@@ -1,25 +1,305 @@
-.App {
-  text-align: center;
+body {
+  font-size: 1.1rem; /* Set a base font size for all text */
+  background-color: black; /* Set the background color for the entire body */
 }
 
+/* Adjust headings */
 h1 {
   text-align: center;
   color: white;
+  font-size: 2.5rem; /* Increase the size of the main heading */
 }
+
 .title {
   color: #1db954;
 }
 
-* {
-  background-color: black;
+h2 {
+  font-size: 2rem; /* Increase size for h2 elements */
 }
+
+h3 {
+  font-size: 1.5rem; /* Increase size for h3 elements */
+}
+
 input {
   background-color: white;
   border-radius: 5rem;
   height: 2rem;
-  width: 20rem;
+  width: 20rem; /* Base width */
+  margin-bottom: 2rem;
 }
+
 button {
   background-color: #1db954;
   border-radius: 5rem;
+  padding: 0.5rem 1rem; /* Increase padding for a larger button */
+  font-size: 1rem; /* Set a base font size */
+  cursor: pointer; /* Change cursor to pointer for better UX */
+  transition: background-color 0.3s; /* Add transition for hover effect */
+}
+
+/* Main app container */
+.App {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center items vertically */
+  justify-content: center;
+}
+
+/* Search bar styling */
+.SearchBar {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center items vertically */
+  justify-content: center;
+}
+
+/* Container for results and playlist */
+.results-playlist-container {
+  margin-left: 10rem;
+  display: flex; /* Use flexbox for layout */
+  gap: 10rem; /* Space between items */
+  margin-top: 2rem; /* Space above the container */
+  width: 100%; /* Ensure the container takes full width */
+  max-width: 1200px; /* Optional max width for larger screens */
+  padding: 0 2rem; /* Optional padding */
+  justify-content: center; /* Center the items in the container */
+}
+
+/* Search results styles */
+.SearchResults {
+  flex: 1; /* Allow SearchResults to grow */
+  min-width: 400px; /* Set a minimum width */
+  margin-right: 10rem; /* Space between SearchResults and Playlist */
+}
+
+/* Playlist styles */
+.Playlist {
+  flex: 0 0 300px; /* Fixed width for Playlist */
+}
+
+/* Media Queries for responsiveness */
+
+/* For larger tablets (1024px or less) */
+@media (max-width: 1024px) {
+  .results-playlist-container {
+    gap: 5rem; /* Reduce gap between items */
+  }
+
+  .SearchResults {
+    margin-right: 2rem; /* Space between SearchResults and Playlist */
+    min-width: 300px; /* Allow it to shrink but maintain a smaller minimum */
+  }
+
+  .Playlist {
+    flex: 0 0 300px; /* Fixed width for Playlist */
+  }
+
+  input {
+    width: 80%; /* Make input field width responsive */
+  }
+
+  /* Make buttons even smaller in tablet mode */
+  button {
+    padding: 0.2rem 0.4rem; /* Reduce padding further */
+    font-size: 0.7rem; /* Smaller font size */
+    width: 60%; /* Make the button smaller in width */
+  }
+}
+
+/* For smaller tablets (768px or less) */
+@media (max-width: 768px) {
+  .results-playlist-container {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    gap: 5rem; /* Reduce gap between items */
+  }
+
+  .SearchResults {
+    margin-right: 0; /* Remove right margin on smaller screens */
+    min-width: auto; /* Allow it to shrink */
+  }
+
+  .Playlist {
+    width: 100%; /* Allow Playlist to take full width */
+    max-width: 300px; /* Optional max width for Playlist */
+  }
+
+  /* Make buttons even smaller in smaller tablets */
+  button {
+    padding: 0.1rem 0.3rem; /* Further reduce padding */
+    font-size: 0.6rem; /* Further reduce font size */
+    width: 50%; /* Smaller width */
+  }
+
+  input {
+    width: 80%; /* Make input field width responsive */
+  }
+}
+
+/* For mobile phones (480px or less) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem; /* Adjust font size for small screens */
+  }
+
+  /* Make buttons smallest on mobile */
+  button {
+    padding: 0.05rem 0.3rem; /* Smallest padding for mobile */
+    font-size: 0.5rem; /* Smallest font size */
+    width: 50%; /* Smallest width */
+  }
+}
+body {
+  font-size: 1.1rem; /* Set a base font size for all text */
+  background-color: black; /* Set the background color for the entire body */
+}
+
+/* Adjust headings */
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 2.5rem; /* Increase the size of the main heading */
+}
+
+.title {
+  color: #1db954;
+}
+
+h2 {
+  color: white;
+  font-size: 2rem; /* Increase size for h2 elements */
+}
+
+h3 {
+  font-size: 1.5rem; /* Increase size for h3 elements */
+}
+
+input {
+  background-color: white;
+  border-radius: 5rem;
+  height: 2rem;
+  width: 20rem; /* Base width */
+  margin-bottom: 2rem;
+}
+
+button {
+  background-color: #1db954;
+  border-radius: 5rem;
+  padding: 0.5rem 1rem; /* Increase padding for a larger button */
+  font-size: 1rem; /* Set a base font size */
+  cursor: pointer; /* Change cursor to pointer for better UX */
+  transition: background-color 0.3s; /* Add transition for hover effect */
+}
+
+/* Main app container */
+.App {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center items vertically */
+  justify-content: center;
+}
+
+/* Search bar styling */
+.SearchBar {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center items vertically */
+  justify-content: center;
+}
+
+/* Container for results and playlist */
+.results-playlist-container {
+  margin-left: 10rem;
+  display: flex; /* Use flexbox for layout */
+  gap: 10rem; /* Space between items */
+  margin-top: 2rem; /* Space above the container */
+  width: 100%; /* Ensure the container takes full width */
+  max-width: 1200px; /* Optional max width for larger screens */
+  padding: 0 2rem; /* Optional padding */
+  justify-content: center; /* Center the items in the container */
+}
+
+/* Search results styles */
+.SearchResults {
+  flex: 1; /* Allow SearchResults to grow */
+  min-width: 400px; /* Set a minimum width */
+  margin-right: 10rem; /* Space between SearchResults and Playlist */
+}
+
+/* Playlist styles */
+.Playlist {
+  flex: 0 0 300px; /* Fixed width for Playlist */
+}
+
+/* Media Queries for responsiveness */
+
+/* For larger tablets (1024px or less) */
+@media (max-width: 1024px) {
+  .results-playlist-container {
+    gap: 5rem; /* Reduce gap between items */
+  }
+
+  .SearchResults {
+    margin-right: 2rem; /* Space between SearchResults and Playlist */
+    min-width: 300px; /* Allow it to shrink but maintain a smaller minimum */
+  }
+
+  .Playlist {
+    flex: 0 0 300px; /* Fixed width for Playlist */
+  }
+
+  input {
+    width: 80%; /* Make input field width responsive */
+  }
+
+  /* Make buttons even smaller in tablet mode */
+  button {
+    padding: 0.2rem 0.4rem; /* Reduce padding further */
+    font-size: 0.7rem; /* Smaller font size */
+    width: 60%; /* Make the button smaller in width */
+  }
+}
+
+/* For smaller tablets (768px or less) */
+@media (max-width: 768px) {
+  .results-playlist-container {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    gap: 5rem; /* Reduce gap between items */
+  }
+
+  .SearchResults {
+    margin-right: 0; /* Remove right margin on smaller screens */
+    min-width: auto; /* Allow it to shrink */
+  }
+
+  .Playlist {
+    width: 100%; /* Allow Playlist to take full width */
+    max-width: 300px; /* Optional max width for Playlist */
+  }
+
+  /* Make buttons even smaller in smaller tablets */
+  button {
+    padding: 0.1rem 0.3rem; /* Further reduce padding */
+    font-size: 0.6rem; /* Further reduce font size */
+    width: 30%; /* Smaller width */
+  }
+
+  input {
+    width: 80%; /* Make input field width responsive */
+  }
+}
+
+/* For mobile phones (480px or less) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem; /* Adjust font size for small screens */
+  }
+
+  /* Make buttons smallest on mobile */
+  button {
+    padding: 0.03rem 0.3rem; /* Smallest padding for mobile */
+    font-size: 0.5rem; /* Smallest font size */
+    width: 40%; /* Smallest width */
+  }
 }

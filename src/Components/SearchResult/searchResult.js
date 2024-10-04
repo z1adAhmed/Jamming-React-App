@@ -1,12 +1,17 @@
 import React from "react";
 import "./searchResult.css";
+import Track from "../Track/track";
 import Tracklist from "../TrackList/trackList"; // Assuming Tracklist will be used here
 
-function SearchResults() {
+function SearchResults({ tracks, onAdd }) {
   return (
-    <div className="SearchResults">
+    <div>
       <h2>Results</h2>
-      <Tracklist />
+      <div className="resultsBox">
+        {tracks.map((track) => (
+          <Track key={track.id} track={track} onAdd={onAdd} />
+        ))}
+      </div>
     </div>
   );
 }
