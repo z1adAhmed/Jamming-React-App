@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./playList.css";
 
 function Playlist({
   name,

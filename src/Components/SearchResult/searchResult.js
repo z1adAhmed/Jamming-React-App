@@ -1,5 +1,5 @@
 import React from "react";
-import "./searchResult.css";
+
 import Track from "../Track/track";
 
 function SearchResults({ tracks, onAdd }) {

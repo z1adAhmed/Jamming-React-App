@@ -161,20 +161,42 @@ function App() {
   };
 
   const savePlaylist = async (playlistName, playlistDescription, trackURIs) => {
+    const tokenExpirationTime = 3600 * 1000; // Example: Spotify access tokens typically last 1 hour
+
     const getAccessToken = () => {
-      // Check if the token is already in the URL
+      // Check if the token is stored locally (e.g., session or local storage)
+      const storedToken = sessionStorage.getItem("access_token");
+      const storedTokenTimestamp = sessionStorage.getItem("token_timestamp");
+
+      const currentTime = new Date().getTime();
+
+      if (
+        storedToken &&
+        storedTokenTimestamp &&
+        currentTime - storedTokenTimestamp < tokenExpirationTime
+      ) {
+        // If token exists and has not expired, return it
+        return storedToken;
+      }
+
+      // Check if the token is in the URL (for initial authorization)
       const hash = window.location.hash;
       if (hash) {
         const params = new URLSearchParams(hash.slice(1));
         const accessToken = params.get("access_token");
 
         if (accessToken) {
+          // Save token and timestamp to session storage
+          sessionStorage.setItem("access_token", accessToken);
+          sessionStorage.setItem("token_timestamp", currentTime);
+
           // Clear the token from the URL
           window.history.pushState(
             "",
             document.title,
             window.location.pathname
           );
+
           return accessToken;
         }
       }
