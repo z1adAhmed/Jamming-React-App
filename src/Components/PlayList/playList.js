@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "./playList.css";
-import Tracklist from "../TrackList/trackList"; // To display tracks in the playlist
 
-function Playlist({ name, tracks, onNameChange }) {
+function Playlist({
+  name,
+  tracks,
+  onNameChange,
+  setPlaylist,
+  savePlaylist,
+  setName,
+}) {
   const [isEditing, setIsEditing] = useState(false); // State to track if we are editing
   const [newName, setNewName] = useState(name); // State to hold the new playlist name
 
@@ -25,6 +31,20 @@ function Playlist({ name, tracks, onNameChange }) {
     }
   };
 
+  const handleRemove = (trackToRemove) => {
+    const updatedTracks = tracks.filter(
+      (track) => track.id !== trackToRemove.id
+    );
+    setPlaylist(updatedTracks); // Update the playlist state
+  };
+
+  const saveToSpotify = () => {
+    const trackURIs = tracks.map((track) => track.uri); // Get the URIs of tracks in the playlist
+    savePlaylist(name, "A playlist created from the Jammming app", trackURIs);
+    setPlaylist([]); // Reset the playlist tracks to an empty array
+    setName("My Playlist");
+  };
+
   return (
     <div className="Playlist">
       {isEditing ? (
@@ -39,12 +59,16 @@ function Playlist({ name, tracks, onNameChange }) {
       ) : (
         <h2 onClick={handleNameClick}>{name}</h2> // Clickable name to enter editing mode
       )}
+      <button onClick={saveToSpotify}>Save to Spotify</button>
       <div>
         {tracks.map((track, index) => (
           <div key={index}>
             <h3>{track.name}</h3>
             <p>
               {track.artist} | {track.album}
+              <button className="remove" onClick={() => handleRemove(track)}>
+                X
+              </button>
             </p>
           </div>
         ))}
